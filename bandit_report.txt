@@ -1,0 +1,51 @@
+Run started:2026-11-07 07:54:54.653153+00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'my_super_secret_admin_password_123'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\vulnerable_app.py:5:13
+4	# VULN-02: Hardcoded Secret (Bandit rule B105 / B106)
+5	SECRET_KEY = "my_super_secret_admin_password_123"
+6	
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\vulnerable_app.py:22:14
+21	    # VULN-01: SQL Injection via raw string formatting (Bandit rule B608)
+22	    query = f"SELECT * FROM users WHERE username = '{username}'"
+23	    print(f"Executing Query: {query}")
+
+--------------------------------------------------
+>> Issue: [B307:blacklist] Use of possibly insecure function - consider using safer ast.literal_eval.
+   Severity: Medium   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b307-eval
+   Location: .\vulnerable_app.py:32:11
+31	    # VULN-03: Dangerous use of eval() (Bandit rule B307)
+32	    return eval(user_code)
+33	
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 25
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 1
+		Medium: 2
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 1
+		High: 1
+Files skipped (0):
